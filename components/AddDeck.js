@@ -4,8 +4,7 @@ import {
   TouchableOpacity,
   Text,
   TextInput,
-  StyleSheet,
-  Switch
+  StyleSheet
 } from "react-native";
 
 export default class AddDeck extends Component {
