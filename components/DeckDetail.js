@@ -11,7 +11,7 @@ class DeckDetail extends Component {
       title: deckId
     };
   }
-  
+
   render() {
     const { deck } = this.props;
     return (
@@ -21,6 +21,7 @@ class DeckDetail extends Component {
           cardsCount={deck.cards.length}
         />
         <CustomButton
+          outline
           style={{ marginTop: 20 }}
           onPress={() => this.props.navigation.navigate(
             'AddCard',
@@ -29,6 +30,17 @@ class DeckDetail extends Component {
         >
           Add Card
         </CustomButton>
+        {deck.cards.length > 0 &&
+          <CustomButton
+            style={{ marginTop: 20 }}
+            onPress={() => this.props.navigation.navigate(
+              'AddCard',
+              { deckId: deck.title }
+            )}
+          >
+            Start Quiz
+          </CustomButton>
+        }
       </View>
     );
   }

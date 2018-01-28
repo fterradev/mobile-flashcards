@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-export default function CustomButton({ children, onPress, style = {}, textStyle = {} }) {
+export default function CustomButton({ children, onPress, style = {}, textStyle = {}, outline }) {
   return (
     <TouchableOpacity
-      style={[styles.AndroidSubmitBtn, style]}
+      style={[
+        styles.AndroidSubmitBtn,
+        outline ? {
+          backgroundColor: 'white',
+          borderColor: 'purple',
+          borderWidth: 1
+        } : {},
+        style
+      ]}
       onPress={onPress}
     >
-      <Text style={[styles.submitBtnText, textStyle]}>{children}</Text>
+      <Text style={[
+        styles.submitBtnText,
+        outline ? { color: 'purple' } : {},
+        textStyle
+      ]}>{children}</Text>
     </TouchableOpacity>
   );
 }
