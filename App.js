@@ -4,6 +4,9 @@ import AddDeck from './components/AddDeck';
 import Decks from './components/Decks';
 import { TabNavigator } from 'react-navigation';
 import { Constants } from 'expo';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -32,10 +35,12 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <AppStatusBar backgroundColor="purple" barStyle="light-content" />
-        <Tabs />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <AppStatusBar backgroundColor="purple" barStyle="light-content" />
+          <Tabs />
+        </View>
+      </Provider>
     );
   }
 }

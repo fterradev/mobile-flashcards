@@ -36,3 +36,5 @@ function decks(
       };
   }
 }
+
+export default decks;
