@@ -17,22 +17,19 @@ function decks(
         ...action.decks
       };
     case ADD_DECK_TITLE:
-      const { title } = action;
       return {
         ...state,
-        [title]: {
-          title
+        [action.title]: {
+          title: action.title
         }
       };
     case ADD_CARD_TO_DECK:
-      const { title, card } = action;
-      const { cards } = state.title.cards;
       return {
         ...state,
-        [title]: {
-          ...title,
+        [action.title]: {
+          ...state[title],
           cards: {
-            ...cards,
+            ...state[title].cards,
             card
           }
         }
