@@ -63,23 +63,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginLeft: 30,
     marginRight: 30
-  },
-  item: {
-    backgroundColor: 'white',
-    borderRadius: 2,
-    padding: 20,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 17,
-    justifyContent: 'center',
-    shadowRadius: 3,
-    shadowOpacity: 0.8,
-    shadowColor: 'rgba(0, 0, 0, 0.24)',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-  },
+  }
 });
 
 function mapStateToProps(decks) {

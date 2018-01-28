@@ -19,7 +19,8 @@ function decks(
       return {
         ...state,
         [action.title]: {
-          title: action.title
+          title: action.title,
+          cards: []
         }
       };
     case ADD_CARD_TO_DECK:
@@ -27,10 +28,10 @@ function decks(
         ...state,
         [action.title]: {
           ...state[title],
-          cards: {
+          cards: [
             ...state[title].cards,
             card
-          }
+          ]
         }
       };
     case RESET_DECKS:

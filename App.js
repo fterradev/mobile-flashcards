@@ -9,6 +9,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
 import thunkMiddleware from 'redux-thunk';
+import DeckDetail from './components/DeckDetail';
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -46,6 +47,15 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      }
+    }
   }
 });
 

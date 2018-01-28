@@ -18,6 +18,11 @@ class AddDeck extends Component {
     const { deckTitle } = this.state;
     if (deckTitle) {
       this.props.saveDeckTitle(deckTitle).then(
+        () => this.props.navigation.navigate(
+          'DeckDetail',
+          { deckId: deckTitle }
+        )
+      ).then(
         this.setState({
           deckTitle: undefined
         })
