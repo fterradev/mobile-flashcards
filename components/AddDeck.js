@@ -14,9 +14,14 @@ class AddDeck extends Component {
     deckTitle: undefined
   };
 
-  submit = () => (
-    this.props.saveDeckTitle(this.state.deckTitle)
-  );
+  submit = () => {
+    const { deckTitle } = this.state;
+    if (deckTitle) {
+      this.props.saveDeckTitle(deckTitle);
+    } else {
+      alert('You must provide a title for the new deck.');
+    }
+  };
 
   render() {
     const { deckTitle } = this.state;
