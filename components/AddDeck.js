@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import {
   KeyboardAvoidingView,
-  TouchableOpacity,
   Text,
   TextInput,
   StyleSheet
 } from "react-native";
 import { saveDeckTitle } from '../actions';
 import { connect } from 'react-redux';
+import CustomButton from "./CustomButton";
 
 class AddDeck extends Component {
   state = {
@@ -48,12 +48,12 @@ class AddDeck extends Component {
           }
           onSubmitEditing={this.submit}
         />
-        <TouchableOpacity
-          style={[styles.AndroidSubmitBtn, { marginTop: 20 }]}
+        <CustomButton
+          style={{ marginTop: 20 }}
           onPress={this.submit}
         >
-          <Text style={styles.submitBtnText}>CREATE</Text>
-        </TouchableOpacity>
+          CREATE
+        </CustomButton>
       </KeyboardAvoidingView>
     );
   }
@@ -68,25 +68,9 @@ const styles = StyleSheet.create({
     marginRight: 30
   },
   input: {
-    width: 200,
+    width: 300,
     padding: 5,
     fontSize: 20
-  },
-  AndroidSubmitBtn: {
-    backgroundColor: 'purple',
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 2,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    color: 'white',
-    fontSize: 22,
-    textAlign: 'center',
   }
 });
 

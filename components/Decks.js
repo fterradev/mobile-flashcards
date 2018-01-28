@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { connect } from 'react-redux';
 import { fetchDecks } from '../actions';
+import DeckSummary from './DeckSummary';
 
 class Decks extends Component {
   componentDidMount() {
@@ -22,18 +23,15 @@ class Decks extends Component {
             data={Object.keys(decks).map(key => decks[key])}
             renderItem={({ item: deck, index }) => (
               <TouchableOpacity
-                style={{ alignItems: 'center' }}
                 onPress={() => this.props.navigation.navigate(
                   'DeckDetail',
                   { deckId: deck.title }
                 )}
               >
-                <Text style={{ color: 'purple', fontSize: 25 }}>
-                  {deck.title}
-                </Text>
-                <Text style={{ fontSize: 16, color: 'gray' }}>
-                  {deck.cards.length} cards
-                </Text>
+                <DeckSummary
+                  title={deck.title}
+                  cardsCount={deck.cards.length}
+                />
               </TouchableOpacity>
             )}
             keyExtractor={(item, index) => (index)}
