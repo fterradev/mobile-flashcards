@@ -1,11 +1,36 @@
 import React, { Component } from "react";
 import {
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  View,
+  Text
 } from "react-native";
+import { connect } from 'react-redux';
+import { fetchDecks } from '../actions';
 
-export default class Decks extends Component {
+class Decks extends Component {
+  componentDidMount() {
+    this.props.fetchDecks();
+  }
   render() {
-    return null;
+    const { decks } = this.props;
+    return (
+      <View>
+        <Text>
+          {JSON.stringify(decks)}
+        </Text>
+      </View>
+    );
   }
 }
+
+function mapStateToProps(decks) {
+  return {
+    decks
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchDecks }
+)(Decks);

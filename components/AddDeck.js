@@ -6,11 +6,17 @@ import {
   TextInput,
   StyleSheet
 } from "react-native";
+import { saveDeckTitle } from '../actions';
+import { connect } from 'react-redux';
 
-export default class AddDeck extends Component {
+class AddDeck extends Component {
   state = {
     deckTitle: undefined
   };
+
+  submit = () => (
+    this.props.saveDeckTitle(this.state.deckTitle)
+  );
 
   render() {
     const { deckTitle } = this.state;
@@ -26,10 +32,13 @@ export default class AddDeck extends Component {
               deckTitle
             })
           }
+          onSubmitEditing={this.submit}
         />
         <TouchableOpacity
-          style={[styles.AndroidSubmitBtn, {marginTop: 20}]}>
-            <Text style={styles.submitBtnText}>CREATE</Text>
+          style={[styles.AndroidSubmitBtn, { marginTop: 20 }]}
+          onPress={this.submit}
+        >
+          <Text style={styles.submitBtnText}>CREATE</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     );
@@ -66,3 +75,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 });
+
+export default connect(
+  null, {
+    saveDeckTitle
+  }
+)(AddDeck);

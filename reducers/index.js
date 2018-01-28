@@ -5,9 +5,7 @@ import {
 } from '../actions';
 
 function decks(
-  state = {
-    items: {}
-  },
+  state = {},
   action
 ) {
   switch (action.type) {

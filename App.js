@@ -2,11 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import AddDeck from './components/AddDeck';
 import Decks from './components/Decks';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Constants } from 'expo';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
+import thunkMiddleware from 'redux-thunk';
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -29,16 +30,28 @@ const Tabs = TabNavigator({
       tabBarLabel: 'Add Deck'
     }
   }
+}, {
+  navigationOptions: {
+    header: null
+  }
+});
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs
+  }
 });
 
 export default class App extends React.Component {
-
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(
+        reducer,
+        applyMiddleware(thunkMiddleware)
+      )}>
         <View style={{ flex: 1 }}>
           <AppStatusBar backgroundColor="purple" barStyle="light-content" />
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider>
     );
