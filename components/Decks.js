@@ -20,20 +20,30 @@ class Decks extends Component {
         {decks && (
           <FlatList
             data={Object.keys(decks).map(key => decks[key])}
-            renderItem={({ item: deck }) => (
-              <View key={deck.title}>
+            renderItem={({ item: deck, index }) => (
+              <TouchableOpacity
+                style={{ alignItems: 'center' }}
+                onPress={() => this.props.navigation.navigate(
+                  'DeckDetail',
+                  { deckId: deck.title }
+                )}
+              >
                 <Text style={{ color: 'purple', fontSize: 25 }}>
                   {deck.title}
                 </Text>
                 <Text style={{ fontSize: 16, color: 'gray' }}>
                   {deck.cards.length} cards
                 </Text>
-              </View>
+              </TouchableOpacity>
             )}
+            keyExtractor={(item, index) => (index)}
             ItemSeparatorComponent={() => (
               <View
                 style={{
-                  height: 20
+                  marginBottom: 20,
+                  marginTop: 20,
+                  height: 1,
+                  backgroundColor: 'gray'
                 }}
               />
             )}
@@ -43,18 +53,12 @@ class Decks extends Component {
     );
   }
 }
-
-function mapStateToProps(decks) {
-  return {
-    decks
-  };
-}
-
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "stretch",
     paddingTop: 20,
     paddingBottom: 20,
     marginLeft: 30,
@@ -77,6 +81,12 @@ const styles = StyleSheet.create({
     },
   },
 });
+
+function mapStateToProps(decks) {
+  return {
+    decks
+  };
+}
 
 export default connect(
   mapStateToProps,
