@@ -3,7 +3,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   View,
-  Text
+  Text,
+  FlatList
 } from "react-native";
 import { connect } from 'react-redux';
 import { fetchDecks } from '../actions';
@@ -15,10 +16,29 @@ class Decks extends Component {
   render() {
     const { decks } = this.props;
     return (
-      <View>
-        <Text>
-          {JSON.stringify(decks)}
-        </Text>
+      <View style={styles.container}>
+        {decks && (
+          <FlatList
+            data={Object.keys(decks).map(key => decks[key])}
+            renderItem={({ item: deck }) => (
+              <View key={deck.title}>
+                <Text style={{ color: 'purple', fontSize: 25 }}>
+                  {deck.title}
+                </Text>
+                <Text style={{ fontSize: 16, color: 'gray' }}>
+                  {deck.cards.length} cards
+                </Text>
+              </View>
+            )}
+            ItemSeparatorComponent={() => (
+              <View
+                style={{
+                  height: 20
+                }}
+              />
+            )}
+          />
+        )}
       </View>
     );
   }
@@ -29,6 +49,34 @@ function mapStateToProps(decks) {
     decks
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginLeft: 30,
+    marginRight: 30
+  },
+  item: {
+    backgroundColor: 'white',
+    borderRadius: 2,
+    padding: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 17,
+    justifyContent: 'center',
+    shadowRadius: 3,
+    shadowOpacity: 0.8,
+    shadowColor: 'rgba(0, 0, 0, 0.24)',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+  },
+});
 
 export default connect(
   mapStateToProps,
