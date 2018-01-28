@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import DeckSummary from './DeckSummary';
 import CustomButton from "./CustomButton";
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { deckId } = navigation.state.params
+    const { deckId } = navigation.state.params;
     return {
       title: deckId
     };
@@ -22,7 +22,10 @@ class DeckDetail extends Component {
         />
         <CustomButton
           style={{ marginTop: 20 }}
-          onPress={this.submit}
+          onPress={() => this.props.navigation.navigate(
+            'AddCard',
+            { deckId: deck.title }
+          )}
         >
           Add Card
         </CustomButton>

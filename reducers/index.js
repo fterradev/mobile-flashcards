@@ -27,10 +27,10 @@ function decks(
       return {
         ...state,
         [action.title]: {
-          ...state[title],
+          ...state[action.title],
           cards: [
-            ...state[title].cards,
-            card
+            ...state[action.title].cards,
+            action.card
           ]
         }
       };

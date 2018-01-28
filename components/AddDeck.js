@@ -38,6 +38,7 @@ class AddDeck extends Component {
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={{ padding: 5, fontSize: 20 }}>Enter New Deck's Title:</Text>
         <TextInput
+          ref="deckTitleInput"
           style={styles.input}
           placeholder="Deck Title"
           value={deckTitle}

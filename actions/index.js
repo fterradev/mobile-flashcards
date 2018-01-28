@@ -41,9 +41,10 @@ export function saveDeckTitle(title) {
 }
 
 export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK';
-function addCardToDeck(card) {
+function addCardToDeck(title, card) {
   return {
     type: ADD_CARD_TO_DECK,
+    title,
     card
   };
 }
@@ -51,7 +52,7 @@ function addCardToDeck(card) {
 export function saveCardIntoDeck(title, card) {
   return dispatch => (
     api.addCardToDeck(title, card).then(
-      () => dispatch(addCardToDeck(card))
+      () => dispatch(addCardToDeck(title, card))
     )
   );
 }
