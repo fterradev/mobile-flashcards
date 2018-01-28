@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import AddDeck from './components/AddDeck';
 import Decks from './components/Decks';
+import ClearDecks from './components/ClearDecks';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Constants } from 'expo';
 import { createStore, applyMiddleware } from 'redux';
@@ -28,6 +29,12 @@ const Tabs = TabNavigator({
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck'
+    }
+  },
+  ClearDecks: {
+    screen: ClearDecks,
+    navigationOptions: {
+      tabBarLabel: 'Clear Decks'
     }
   }
 }, {

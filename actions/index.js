@@ -55,3 +55,18 @@ export function saveCardIntoDeck(title, card) {
     )
   );
 }
+
+export const RESET_DECKS = 'RESET_DECKS';
+function resetDecks() {
+  return {
+    type: RESET_DECKS
+  }
+}
+
+export function clearDecks() {
+  return dispatch => (
+    api.clearDecks().then(
+      () => dispatch(resetDecks())
+    )
+  );
+}

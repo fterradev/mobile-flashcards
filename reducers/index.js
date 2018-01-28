@@ -1,7 +1,8 @@
 import {
   RECEIVE_DECKS,
   ADD_DECK_TITLE,
-  ADD_CARD_TO_DECK
+  ADD_CARD_TO_DECK,
+  RESET_DECKS
 } from '../actions';
 
 function decks(
@@ -32,6 +33,8 @@ function decks(
           }
         }
       };
+    case RESET_DECKS:
+      return {};
   }
 }
 

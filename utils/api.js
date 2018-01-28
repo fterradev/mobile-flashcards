@@ -34,5 +34,9 @@ export function getDecks() {
 export function getDeck(title) {
   return getDecks().then(
     decks => decks[title]
-  )
+  );
+}
+
+export function clearDecks() {
+  return AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify({}));
 }
