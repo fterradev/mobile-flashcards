@@ -11,6 +11,7 @@ import reducer from './reducers';
 import thunkMiddleware from 'redux-thunk';
 import DeckDetail from './components/DeckDetail';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz'
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -62,6 +63,16 @@ const MainNavigator = StackNavigator({
     screen: AddCard,
     navigationOptions: {
       title: 'Add Card',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz',
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: 'purple',

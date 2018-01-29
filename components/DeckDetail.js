@@ -34,7 +34,7 @@ class DeckDetail extends Component {
           <CustomButton
             style={{ marginTop: 20 }}
             onPress={() => this.props.navigation.navigate(
-              'AddCard',
+              'Quiz',
               { deckId: deck.title }
             )}
           >
