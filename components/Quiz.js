@@ -13,63 +13,98 @@ class Quiz extends Component {
 
   nextQuestion = (correct = false) => {
     const { cards } = this.props;
-    this.setState(
-      prevState => ({
-        cardIndex:
-          prevState.cardIndex < cards.length - 1
-            ? prevState.cardIndex + 1
-            : prevState.cardIndex,
-        showAnswer: false,
-        score: correct ? prevState.score + 1 : prevState.score
-      }),
-      () => {
-        if (this.state.cardIndex == cards.length) {
-        }
-      }
-    );
+    this.setState(prevState => ({
+      cardIndex: prevState.cardIndex + 1,
+      showAnswer: false,
+      score: correct ? prevState.score + 1 : prevState.score
+    }));
+  };
+
+  restart = () => {
+    this.setState({
+      cardIndex: 0,
+      showAnswer: false,
+      score: 0
+    });
   };
 
   render() {
     const { cards } = this.props;
-    const { cardIndex, showAnswer } = this.state;
+    const { cardIndex, showAnswer, score } = this.state;
+    const finished = cardIndex === cards.length;
     return (
       <View style={styles.container}>
-        <View>
-          <Text>{`${cardIndex + 1}/${cards.length}`}</Text>
-          <Text style={{ color: 'purple' }}>Question</Text>
-          <Text style={styles.question}>{cards[cardIndex].question}</Text>
-          {!showAnswer && (
-            <CustomButton
-              outline
-              style={{ marginTop: 20 }}
-              onPress={() =>
-                this.setState({
-                  showAnswer: true
-                })
-              }
-            >
-              Show Answer
-            </CustomButton>
-          )}
-        </View>
-        {showAnswer && (
+        {!finished && (
           <View style={{ flex: 1, justifyContent: 'space-between' }}>
             <View>
-              <Text style={{ color: 'purple' }}>Answer</Text>
-              <Text style={styles.question}>{cards[cardIndex].answer}</Text>
+              <Text>{`${cardIndex + 1}/${cards.length}`}</Text>
+              <Text style={{ color: 'purple' }}>Question</Text>
+              <Text style={styles.question}>{cards[cardIndex].question}</Text>
+              {!showAnswer && (
+                <CustomButton
+                  outline
+                  style={{ marginTop: 20 }}
+                  onPress={() =>
+                    this.setState({
+                      showAnswer: true
+                    })
+                  }
+                >
+                  Show Answer
+                </CustomButton>
+              )}
+            </View>
+            {showAnswer && (
+              <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                <View>
+                  <Text style={{ color: 'purple' }}>Answer</Text>
+                  <Text style={styles.question}>{cards[cardIndex].answer}</Text>
+                </View>
+                <View style={{ paddingBottom: 30 }}>
+                  <CustomButton
+                    style={{ marginTop: 20, backgroundColor: 'green' }}
+                    onPress={() => this.nextQuestion(true)}
+                  >
+                    Correct
+                  </CustomButton>
+                  <CustomButton
+                    style={{ marginTop: 20, backgroundColor: 'red' }}
+                    onPress={() => this.nextQuestion(false)}
+                  >
+                    Incorrect
+                  </CustomButton>
+                </View>
+              </View>
+            )}
+          </View>
+        )}
+        {finished && (
+          <View>
+            <Text style={{ color: 'purple' }}>Final score</Text>
+            <View style={styles.finalScoreContainer}>
+              <Text style={{ fontSize: 50, color: 'purple' }}>
+                {`${score}/${cards.length}`}
+              </Text>
+              <Text style={{ fontSize: 20, color: 'purple' }}>
+                ({`${Math.round(100 * score / cards.length)}%`})
+              </Text>
+              {score === cards.length && (
+                <Text style={{ fontSize: 40, color: 'purple' }}>Perfect!</Text>
+              )}
             </View>
             <View style={{ paddingBottom: 30 }}>
               <CustomButton
-                style={{ marginTop: 20, backgroundColor: 'green' }}
-                onPress={() => this.nextQuestion(true)}
+                outline
+                style={{ marginTop: 20 }}
+                onPress={() => this.props.navigation.goBack()}
               >
-                Correct
+                Back to Deck
               </CustomButton>
               <CustomButton
-                style={{ marginTop: 20, backgroundColor: 'red' }}
-                onPress={() => this.nextQuestion(false)}
+                style={{ marginTop: 20 }}
+                onPress={() => this.restart()}
               >
-                Incorrect
+                Restart Quiz
               </CustomButton>
             </View>
           </View>
@@ -94,6 +129,10 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontSize: 25,
     textAlign: 'center'
+  },
+  finalScoreContainer: {
+    padding: 30,
+    alignItems: 'center'
   }
 });
 
