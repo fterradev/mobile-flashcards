@@ -12,6 +12,7 @@ import thunkMiddleware from 'redux-thunk';
 import DeckDetail from './components/DeckDetail';
 import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
+import { setLocalNotification } from './utils/helpers';
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -97,6 +98,10 @@ const MainNavigator = StackNavigator(
 );
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer, applyMiddleware(thunkMiddleware))}>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet, Text } from 'react-native';
 import DeckSummary from './DeckSummary';
 import CustomButton from './CustomButton';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class Quiz extends Component {
   state = {
@@ -10,6 +11,16 @@ class Quiz extends Component {
     showAnswer: false,
     score: 0
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    const { cards } = this.props;
+    if (
+      this.state.cardIndex === cards.length &&
+      prevState.cardIndex < this.state.cardIndex
+    ) {
+      clearLocalNotification().then(setLocalNotification);
+    }
+  }
 
   nextQuestion = (correct = false) => {
     const { cards } = this.props;
