@@ -14,10 +14,10 @@ class Quiz extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { cards } = this.props;
-    if (
-      this.state.cardIndex === cards.length &&
-      prevState.cardIndex < this.state.cardIndex
-    ) {
+    const { cardIndex } = this.state;
+    const finished = cardIndex === cards.length;
+    const wasFinishedPreviously = prevState.cardIndex === cards.length;
+    if (finished && !wasFinishedPreviously) {
       clearLocalNotification().then(setLocalNotification);
     }
   }
