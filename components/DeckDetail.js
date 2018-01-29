@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Text } from 'react-native';
 import DeckSummary from './DeckSummary';
-import CustomButton from "./CustomButton";
+import CustomButton from './CustomButton';
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -10,37 +10,32 @@ class DeckDetail extends Component {
     return {
       title: deckId
     };
-  }
+  };
 
   render() {
     const { deck } = this.props;
     return (
       <View style={styles.container}>
-        <DeckSummary
-          title={deck.title}
-          cardsCount={deck.cards.length}
-        />
+        <DeckSummary title={deck.title} cardsCount={deck.cards.length} />
         <CustomButton
           outline
           style={{ marginTop: 20 }}
-          onPress={() => this.props.navigation.navigate(
-            'AddCard',
-            { deckId: deck.title }
-          )}
+          onPress={() =>
+            this.props.navigation.navigate('AddCard', { deckId: deck.title })
+          }
         >
           Add Card
         </CustomButton>
-        {deck.cards.length > 0 &&
+        {deck.cards.length > 0 && (
           <CustomButton
             style={{ marginTop: 20 }}
-            onPress={() => this.props.navigation.navigate(
-              'Quiz',
-              { deckId: deck.title }
-            )}
+            onPress={() =>
+              this.props.navigation.navigate('Quiz', { deckId: deck.title })
+            }
           >
             Start Quiz
           </CustomButton>
-        }
+        )}
       </View>
     );
   }
@@ -49,8 +44,8 @@ class DeckDetail extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "stretch",
+    justifyContent: 'center',
+    alignItems: 'stretch',
     paddingTop: 20,
     paddingBottom: 20,
     marginLeft: 30,
@@ -70,8 +65,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 3
-    },
-  },
+    }
+  }
 });
 
 function mapStateToProps(decks, { navigation }) {
@@ -81,6 +76,4 @@ function mapStateToProps(decks, { navigation }) {
   };
 }
 
-export default connect(
-  mapStateToProps
-)(DeckDetail);
+export default connect(mapStateToProps)(DeckDetail);

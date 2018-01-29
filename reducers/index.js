@@ -5,10 +5,7 @@ import {
   RESET_DECKS
 } from '../actions';
 
-function decks(
-  state = {},
-  action
-) {
+function decks(state = {}, action) {
   switch (action.type) {
     case RECEIVE_DECKS:
       return {
@@ -28,10 +25,7 @@ function decks(
         ...state,
         [action.title]: {
           ...state[action.title],
-          cards: [
-            ...state[action.title].cards,
-            action.card
-          ]
+          cards: [...state[action.title].cards, action.card]
         }
       };
     case RESET_DECKS:

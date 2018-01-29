@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   KeyboardAvoidingView,
   Text,
   TextInput,
   StyleSheet
-} from "react-native";
+} from 'react-native';
 import { saveDeckTitle } from '../actions';
 import { connect } from 'react-redux';
-import CustomButton from "./CustomButton";
+import CustomButton from './CustomButton';
 
 class AddDeck extends Component {
   state = {
@@ -17,16 +17,16 @@ class AddDeck extends Component {
   submit = () => {
     const { deckTitle } = this.state;
     if (deckTitle) {
-      this.props.saveDeckTitle(deckTitle).then(
-        () => this.props.navigation.navigate(
-          'DeckDetail',
-          { deckId: deckTitle }
+      this.props
+        .saveDeckTitle(deckTitle)
+        .then(() =>
+          this.props.navigation.navigate('DeckDetail', { deckId: deckTitle })
         )
-      ).then(
-        this.setState({
-          deckTitle: undefined
-        })
-      );
+        .then(
+          this.setState({
+            deckTitle: undefined
+          })
+        );
     } else {
       alert('You must provide a title for the new deck.');
     }
@@ -36,7 +36,9 @@ class AddDeck extends Component {
     const { deckTitle } = this.state;
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <Text style={{ padding: 5, fontSize: 20 }}>Enter New Deck's Title:</Text>
+        <Text style={{ padding: 5, fontSize: 20 }}>
+          Enter New Deck's Title:
+        </Text>
         <TextInput
           ref="deckTitleInput"
           style={styles.input}
@@ -49,10 +51,7 @@ class AddDeck extends Component {
           }
           onSubmitEditing={this.submit}
         />
-        <CustomButton
-          style={{ marginTop: 20 }}
-          onPress={this.submit}
-        >
+        <CustomButton style={{ marginTop: 20 }} onPress={this.submit}>
           Create Deck
         </CustomButton>
       </KeyboardAvoidingView>
@@ -63,8 +62,8 @@ class AddDeck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 30,
     marginRight: 30
   },
@@ -75,8 +74,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(
-  null, {
-    saveDeckTitle
-  }
-)(AddDeck);
+export default connect(null, {
+  saveDeckTitle
+})(AddDeck);

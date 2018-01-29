@@ -14,16 +14,12 @@ class ClearDecks extends Component {
         done: true
       })
     );
-  }
+  };
 
   render() {
     return (
       <View>
-        {this.state.done && (
-          <Text>
-            Done!
-          </Text>
-        )}
+        {this.state.done && <Text>Done!</Text>}
         <TouchableOpacity
           style={[styles.AndroidSubmitBtn, { marginTop: 20 }]}
           onPress={this.clearDecks}
@@ -45,18 +41,15 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     alignSelf: 'flex-end',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   submitBtnText: {
     color: 'white',
     fontSize: 22,
-    textAlign: 'center',
+    textAlign: 'center'
   }
 });
 
-export default connect(
-  null,
-  {
-    clearDecks
-  }
-)(ClearDecks);
+export default connect(null, {
+  clearDecks
+})(ClearDecks);

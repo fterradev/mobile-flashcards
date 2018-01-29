@@ -1,8 +1,13 @@
-import React, { Component } from "react";
-import { KeyboardAvoidingView, Text, TextInput, StyleSheet } from "react-native";
+import React, { Component } from 'react';
+import {
+  KeyboardAvoidingView,
+  Text,
+  TextInput,
+  StyleSheet
+} from 'react-native';
 import { saveCardIntoDeck } from '../actions';
 import { connect } from 'react-redux';
-import CustomButton from "./CustomButton";
+import CustomButton from './CustomButton';
 
 class AddCard extends Component {
   state = {
@@ -11,10 +16,7 @@ class AddCard extends Component {
   };
 
   componentDidMount() {
-    this
-      .refs
-      .questionInput
-      .focus();
+    this.refs.questionInput.focus();
   }
 
   submit = () => {
@@ -28,8 +30,7 @@ class AddCard extends Component {
       alert('You must provide an answer for the new card.');
       return;
     }
-    this
-      .props
+    this.props
       .saveCardIntoDeck(deck.title, { question, answer })
       .then(() => this.props.navigation.goBack())
       .then(this.setState({ question: undefined, answer: undefined }));
@@ -45,21 +46,23 @@ class AddCard extends Component {
           placeholder="Question"
           value={question}
           onChangeText={question => this.setState({ question })}
-          onSubmitEditing={(event) => {
-            this
-              .refs
-              .answerInput
-              .focus();
-          }} />
+          onSubmitEditing={event => {
+            this.refs.answerInput.focus();
+          }}
+        />
         <TextInput
           ref="answerInput"
           style={styles.input}
           placeholder="Answer"
           value={answer}
-          onChangeText={answer => this.setState({ answer })} />
-        <CustomButton style={{
-          marginTop: 20
-        }} onPress={this.submit}>
+          onChangeText={answer => this.setState({ answer })}
+        />
+        <CustomButton
+          style={{
+            marginTop: 20
+          }}
+          onPress={this.submit}
+        >
           CREATE
         </CustomButton>
       </KeyboardAvoidingView>
@@ -70,8 +73,8 @@ class AddCard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 30,
     marginRight: 30
   },
