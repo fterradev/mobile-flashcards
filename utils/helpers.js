@@ -33,8 +33,8 @@ export function setLocalNotification() {
 
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(12);
-            tomorrow.setMinutes(30);
+            tomorrow.setHours(18);
+            tomorrow.setMinutes(00);
 
             Notifications.scheduleLocalNotificationAsync(createNotification(), {
               time: tomorrow,
