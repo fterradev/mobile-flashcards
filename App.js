@@ -11,54 +11,57 @@ import reducer from './reducers';
 import thunkMiddleware from 'redux-thunk';
 import DeckDetail from './components/DeckDetail';
 import AddCard from './components/AddCard';
-import Quiz from './components/Quiz'
+import Quiz from './components/Quiz';
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
     <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
-  )
+  );
 }
 
-const Tabs = TabNavigator({
-  Decks: {
-    screen: Decks,
-    navigationOptions: {
-      tabBarLabel: 'Decks'
+const Tabs = TabNavigator(
+  {
+    Decks: {
+      screen: Decks,
+      navigationOptions: {
+        tabBarLabel: 'Decks'
+      }
+    },
+    AddDeck: {
+      screen: AddDeck,
+      navigationOptions: {
+        tabBarLabel: 'Add Deck'
+      }
+    },
+    ClearDecks: {
+      screen: ClearDecks,
+      navigationOptions: {
+        tabBarLabel: 'Clear Decks'
+      }
     }
   },
-  AddDeck: {
-    screen: AddDeck,
+  {
     navigationOptions: {
-      tabBarLabel: 'Add Deck'
-    }
-  },
-  ClearDecks: {
-    screen: ClearDecks,
-    navigationOptions: {
-      tabBarLabel: 'Clear Decks'
+      header: null
+    },
+    tabBarOptions: {
+      activeTintColor: 'white',
+      style: {
+        height: 56,
+        backgroundColor: 'purple',
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 3
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+      }
     }
   }
-}, {
-  navigationOptions: {
-    header: null
-  },
-  tabBarOptions: {
-    activeTintColor: 'white',
-    style: {
-      height: 56,
-      backgroundColor: 'purple',
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
-    }
-  }
-});
+);
 
 const MainNavigator = StackNavigator({
   Home: {
@@ -69,7 +72,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: 'purple'
       }
     }
   },
@@ -79,7 +82,7 @@ const MainNavigator = StackNavigator({
       title: 'Add Card',
       headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: 'purple'
       }
     }
   },
@@ -89,7 +92,7 @@ const MainNavigator = StackNavigator({
       title: 'Quiz',
       headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: 'purple'
       }
     }
   }
@@ -98,10 +101,7 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(
-        reducer,
-        applyMiddleware(thunkMiddleware)
-      )}>
+      <Provider store={createStore(reducer, applyMiddleware(thunkMiddleware))}>
         <View style={{ flex: 1 }}>
           <AppStatusBar backgroundColor="purple" barStyle="light-content" />
           <MainNavigator />
@@ -116,6 +116,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
