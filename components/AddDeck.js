@@ -53,7 +53,7 @@ class AddDeck extends Component {
           style={{ marginTop: 20 }}
           onPress={this.submit}
         >
-          CREATE
+          Create Deck
         </CustomButton>
       </KeyboardAvoidingView>
     );
