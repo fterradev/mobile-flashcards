@@ -43,6 +43,20 @@ const Tabs = TabNavigator({
 }, {
   navigationOptions: {
     header: null
+  },
+  tabBarOptions: {
+    activeTintColor: 'white',
+    style: {
+      height: 56,
+      backgroundColor: 'purple',
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1
+    }
   }
 });
 
