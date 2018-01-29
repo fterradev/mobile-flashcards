@@ -63,40 +63,36 @@ const Tabs = TabNavigator(
   }
 );
 
-const MainNavigator = StackNavigator({
-  Home: {
-    screen: Tabs
-  },
-  DeckDetail: {
-    screen: DeckDetail,
-    navigationOptions: {
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: 'purple'
+const MainNavigator = StackNavigator(
+  {
+    Home: {
+      screen: Tabs
+    },
+    DeckDetail: {
+      screen: DeckDetail
+    },
+    AddCard: {
+      screen: AddCard,
+      navigationOptions: {
+        title: 'Add Card'
+      }
+    },
+    Quiz: {
+      screen: Quiz,
+      navigationOptions: {
+        title: 'Quiz'
       }
     }
   },
-  AddCard: {
-    screen: AddCard,
+  {
     navigationOptions: {
-      title: 'Add Card',
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: 'purple'
-      }
-    }
-  },
-  Quiz: {
-    screen: Quiz,
-    navigationOptions: {
-      title: 'Quiz',
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: 'purple'
       }
     }
   }
-});
+);
 
 export default class App extends React.Component {
   render() {
