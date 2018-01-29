@@ -34,13 +34,15 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: 'Add Deck'
       }
-    },
+    }
+    /*,
     ClearDecks: {
       screen: ClearDecks,
       navigationOptions: {
         tabBarLabel: 'Clear Decks'
       }
     }
+    */
   },
   {
     navigationOptions: {
