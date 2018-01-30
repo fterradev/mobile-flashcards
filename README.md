@@ -18,6 +18,8 @@ $ yarn install
 
 ## Usage
 
+To run it on a physical device, you must previously install the [Expo app](https://expo.io), whereas for virtual devices the following commands will do it automatically.
+
 To run this in development mode run `yarn start` and follow terminal instructions to view it on your phone or virtual device.
 
-Alternatively, run `yarn run android` to just open it on a connected phone or virtual device.
+Alternatively, run `yarn run android` to just open it on a connected phone or on an **already started** virtual device.
